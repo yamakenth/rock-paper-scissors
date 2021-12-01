@@ -82,9 +82,6 @@ function game() {
       computerWinCount++;
     }
     console.log(result);
-    
-    console.log('P>>>' + playerWinCount);
-    console.log('COM>>>' + computerWinCount);
   }
   // log final winner 
   let finalMessage = determineWinner(playerWinCount, computerWinCount);
@@ -95,7 +92,7 @@ function game() {
 function determineWinner(playerWinCount, computerWinCount) {
   if (playerWinCount === computerWinCount) {
     return 'IT WAS A DRAW!';
-  } else if (playerWinCount > Math.floor(playerWinCount / 2)) {
+  } else if (playerWinCount > computerWinCount) {
     return `YOU WON! YOU WON ${playerWinCount} GAMES OUT OF 5.`;
   } else {
     return `YOU LOST! YOU WON ${playerWinCount} GAMES OUT OF 5.`;
@@ -103,4 +100,4 @@ function determineWinner(playerWinCount, computerWinCount) {
 }
 
 // play game
-// game();
+game();
