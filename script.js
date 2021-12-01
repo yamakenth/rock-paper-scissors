@@ -1,10 +1,12 @@
-// randomly return 'rock', 'paper', 'scissors'
+// randomly generate computer's move 
+// take no parameters 
+// return 'rock', 'paper', or 'scissors'
 function computerPlay() {
-  // move in english 
-  let move;
-  // generate a random number [0, 2]
+  // declare move 
+  let move = '';
+  // generate a random number [0, 3)
   let randNum = Math.floor(Math.random() * 3);
-  // generate a move 
+  // convert random number to move in words
   if (randNum === 0) {
     move = 'rock';
   } else if (randNum === 1) {
@@ -12,14 +14,16 @@ function computerPlay() {
   } else {
     move = 'scissors';
   }
-  // return
+  // return move
   return move;
 }
 
 // play one round of Rock Paper Scissors 
+// take in a player's move, a computer's move 
+// return a message to indicate who won 
 function playRound(playerSelection, computerSelection) {
   // determine winner {-1: player lose, 0: draw, 1: player win}
-  let gameStatus;
+  let gameStatus = NaN;
   if (playerSelection === computerSelection) { // draw 
     gameStatus = 0;
   } else if (playerSelection === 'rock') { // player plays 'rock'
@@ -41,13 +45,15 @@ function playRound(playerSelection, computerSelection) {
       gameStatus = -1;
     }
   }
-  // get status message to return 
+  // get message to indicate who won 
   let message = getStatusMessage(playerSelection, computerSelection, gameStatus);
-  // return 
+  // return message 
   return message;
 }
 
-// generate game status message 
+// generate a message indicating who won in each round
+// take in a player's selection, a computer's selection, an integer representaion of who won 
+// return message
 function getStatusMessage(playerSelection, computerSelection, gameStatus) {
   if (gameStatus === 0) {
     return `It was a draw! You played ${playerSelection}.`;
@@ -58,10 +64,9 @@ function getStatusMessage(playerSelection, computerSelection, gameStatus) {
   }
 }
 
-// play 5 games 
-// log result of each round 
-// keep tally of number of wins 
-// display final winner 
+// play 5 games, log result of each round, keep tally of number of wins, display final winner 
+// take in no parameters 
+// return final winner out of 5 games 
 function game() {
   // keep tally of player's wins and computer's wins 
   let playerWinCount = 0;
@@ -98,4 +103,4 @@ function determineWinner(playerWinCount, computerWinCount) {
 }
 
 // play game
-game();
+// game();
