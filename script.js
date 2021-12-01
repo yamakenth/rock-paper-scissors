@@ -23,21 +23,21 @@ function playRound(playerSelection, computerSelection) {
   
   // determine winner {-1: player lose, 0: draw, 1: player win}
   let gameStatus;
-  if (playerSelection === computerSelection) {
+  if (playerSelection === computerSelection) { // draw 
     gameStatus = 0;
-  } else if (playerSelection === 'rock') {
+  } else if (playerSelection === 'rock') { // player plays 'rock'
     if (computerSelection === 'scissors') {
       gameStatus = 1;
     } else {
       gameStatus = -1;
     }
-  } else if (playerSelection === 'paper') {
+  } else if (playerSelection === 'paper') { // player plays 'paper'
     if (computerSelection === 'rock') {
       gameStatus = 1;
     } else {
       gameStatus = -1;
     }
-  } else if (playerSelection === 'scissors') {
+  } else if (playerSelection === 'scissors') { // player plays 'scissors'
     if (computerSelection === 'paper') {
       gameStatus = 1;
     } else {
@@ -45,15 +45,32 @@ function playRound(playerSelection, computerSelection) {
     }
   }
 
-  return gameStatus;
+  // get status message to return 
+  let message = getStatusMessage(playerSelection, computerSelection, gameStatus);
+  
+  return message;
 }
+
+// generate game status message 
+function getStatusMessage(playerSelection, computerSelection, gameStatus) {
+  if (gameStatus === 0) {
+    return `It was a draw! ${playerSelection} ties ${computerSelection}.`;
+  } else if (gameStatus === 1) {
+    return `You won! ${playerSelection} beats ${computerSelection}`;
+  } else {
+    return `You lost! ${computerSelection} beats ${playerSelection}`;
+  }
+}
+
+
+
+
+
 
 // test 
 for (let i = 0; i < 10; i++) {
-  let playerSelection = 'scissors';
-  let computerSelection = computerPlay();
-  let result = playRound(playerSelection, computerSelection);
-  console.log(`P1: ${playerSelection}, COM: ${computerSelection}, Result: ${result}`)
+    let computerSelection = computerPlay();
+    let playerSelection = 'scissors';
+    let result = playRound(playerSelection, computerSelection);
+    console.log(result);
 }
-
-// return `It was a draws! ${playerSelection} ties ${computerSelection}.`;
