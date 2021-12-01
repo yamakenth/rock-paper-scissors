@@ -63,16 +63,38 @@ function getStatusMessage(playerSelection, computerSelection, gameStatus) {
 // keep tally of number of wins 
 // display final winner 
 function game() {
-  // keep tally of player's wins 
-  let playerWinCount;
+  // keep tally of player's wins and computer's wins 
+  let playerWinCount = 0;
+  let computerWinCount = 0;
   // play game 
   for (let i = 0; i < 5; i++) {
     let playerSelection = prompt('What\'s your move? Type "rock", "paper", or "scissors"').toLowerCase();
     let computerSelection = computerPlay();
     let result = playRound(playerSelection, computerSelection);
+    if (result.split('!')[0] === 'You won') {
+      playerWinCount++;
+    } else if (result.split('!')[0] === 'You lost') {
+      computerWinCount++;
+    }
     console.log(result);
+    
+    console.log('P>>>' + playerWinCount);
+    console.log('COM>>>' + computerWinCount);
   }
+  // log final winner 
+  let finalMessage = determineWinner(playerWinCount, computerWinCount);
+  console.log(finalMessage);
+}
 
+// determine final game winner 
+function determineWinner(playerWinCount, computerWinCount) {
+  if (playerWinCount === computerWinCount) {
+    return 'IT WAS A DRAW!';
+  } else if (playerWinCount > Math.floor(playerWinCount / 2)) {
+    return `YOU WON! YOU WON ${playerWinCount} GAMES OUT OF 5.`;
+  } else {
+    return `YOU LOST! YOU WON ${playerWinCount} GAMES OUT OF 5.`;
+  }
 }
 
 // play game
