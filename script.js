@@ -20,82 +20,84 @@ function computerPlay() {
 
 // play one round of Rock Paper Scissors 
 // take in a player's move, a computer's move 
-// return a message to indicate who won 
+// return a message to indicate who won the round
 function playRound(playerSelection, computerSelection) {
   // determine winner {-1: player lose, 0: draw, 1: player win}
-  let gameStatus = NaN;
+  let roundResult = NaN;
   if (playerSelection === computerSelection) { // draw 
-    gameStatus = 0;
+    roundResult = 0;
   } else if (playerSelection === 'rock') { // player plays 'rock'
     if (computerSelection === 'scissors') {
-      gameStatus = 1;
+      roundResult = 1;
     } else {
-      gameStatus = -1;
+      roundResult = -1;
     }
   } else if (playerSelection === 'paper') { // player plays 'paper'
     if (computerSelection === 'rock') {
-      gameStatus = 1;
+      roundResult = 1;
     } else {
-      gameStatus = -1;
+      roundResult = -1;
     }
   } else if (playerSelection === 'scissors') { // player plays 'scissors'
     if (computerSelection === 'paper') {
-      gameStatus = 1;
+      roundResult = 1;
     } else {
-      gameStatus = -1;
+      roundResult = -1;
     }
   }
-  // get message to indicate who won 
-  let message = getStatusMessage(playerSelection, computerSelection, gameStatus);
+  // get message to indicate who won the round
+  let roundMessage = getRoundResultMessage(playerSelection, computerSelection, roundResult);
   // return message 
-  return message;
+  return roundMessage;
 }
 
 // generate a message indicating who won in each round
 // take in a player's selection, a computer's selection, an integer representaion of who won 
 // return message
-function getStatusMessage(playerSelection, computerSelection, gameStatus) {
-  if (gameStatus === 0) {
+function getRoundResultMessage(playerSelection, computerSelection, roundResult) {
+  if (roundResult === 0) {
     return `It was a draw! You played ${playerSelection}.`;
-  } else if (gameStatus === 1) {
+  } else if (roundResult === 1) {
     return `You won! ${playerSelection} beats ${computerSelection}`;
   } else {
     return `You lost! ${computerSelection} beats ${playerSelection}`;
   }
 }
 
-// play 5 games, log result of each round, keep tally of number of wins, display final winner 
+// play 5 rounds, log result of each round, keep tally of number of rounds won, display game winner 
 // take in no parameters 
-// return final winner out of 5 games 
+// return game winner
 function game() {
   // keep tally of player's wins and computer's wins 
-  let playerWinCount = 0;
-  let computerWinCount = 0;
+  let playerRoundWon = 0;
+  let computerRoundWon = 0;
   // play game 
   for (let i = 0; i < 5; i++) {
     let playerSelection = prompt('What\'s your move? Type "rock", "paper", or "scissors"').toLowerCase();
     let computerSelection = computerPlay();
-    let result = playRound(playerSelection, computerSelection);
-    if (result.split('!')[0] === 'You won') {
-      playerWinCount++;
-    } else if (result.split('!')[0] === 'You lost') {
-      computerWinCount++;
+    let roundResult = playRound(playerSelection, computerSelection);
+    if (roundResult.split('!')[0] === 'You won') {
+      playerRoundWon++;
+    } else if (roundResult.split('!')[0] === 'You lost') {
+      computerRoundWon++;
     }
-    console.log(result);
+    console.log(roundResult);
   }
-  // log final winner 
-  let finalMessage = determineWinner(playerWinCount, computerWinCount);
-  console.log(finalMessage);
+  // log game winner 
+  let gameMessage = getGameResultMessage(playerRoundWon, computerRoundWon);
+  console.log(gameMessage);
 }
 
-// determine final game winner 
-function determineWinner(playerWinCount, computerWinCount) {
-  if (playerWinCount === computerWinCount) {
+// generate a message indicating who won the game 
+// take in number of rounds won by player, number of rounds won by computer
+// return message
+function getGameResultMessage(playerRoundWon, computerRoundWon) {
+  if (playerRoundWon === computerRoundWon) {
     return 'IT WAS A DRAW!';
-  } else if (playerWinCount > computerWinCount) {
-    return `YOU WON! YOU WON ${playerWinCount} GAMES OUT OF 5.`;
+  } else if (playerRoundWon > computerRoundWon) {
+    return `YOU WON! YOU WON ${playerRoundWon} GAMES OUT OF 5.`;
   } else {
-    return `YOU LOST! YOU WON ${playerWinCount} GAMES OUT OF 5.`;
+    return `YOU LOST! YOU WON ${playerRoundWon} GAMES OUT OF 5.`;
   }
 }
 
