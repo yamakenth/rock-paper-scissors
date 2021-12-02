@@ -72,7 +72,7 @@ function game() {
   let playerRoundWon = 0;
   let computerRoundWon = 0;
   // play game 
-  for (let i = 0; i < 5; i++) {
+  while (true) {  
     let playerSelection = prompt('What\'s your move? Type "rock", "paper", or "scissors"').toLowerCase();
     let computerSelection = computerPlay();
     let roundResult = playRound(playerSelection, computerSelection);
