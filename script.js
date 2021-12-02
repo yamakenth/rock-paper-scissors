@@ -19,9 +19,9 @@ function computerPlay() {
   return move;
 }
 
-// play one round of Rock Paper Scissors 
+// play one round of Rock Paper Scissors then display result on page
 // take in a player's move, a computer's move 
-// return a message to indicate who won the round
+// return no result 
 function playRound(playerSelection, computerSelection) {
   // determine winner {-1: player lose, 0: draw, 1: player win}
   let roundResult = NaN;
@@ -47,11 +47,19 @@ function playRound(playerSelection, computerSelection) {
     }
   }
 
-  // get message to indicate who won the round
-  let roundMessage = getRoundResultMessage(playerSelection, computerSelection, roundResult);
-  console.log(roundMessage); // TEST
-  // return message 
-  return roundMessage;
+  // add message to indicate who won the round
+  const roundMessage = getRoundResultMessage(playerSelection, computerSelection, roundResult);
+  addRoundResultToDiv(roundMessage);
+}
+
+// add child element to "Round Result" section on page
+// take in round result message 
+// return no results 
+function addRoundResultToDiv(roundMessage) {
+  const roundResultDiv = document.querySelector('.round-result');
+  const roundMessageP = document.createElement('p');
+  roundMessageP.innerText = roundMessage;
+  roundResultDiv.appendChild(roundMessageP);
 }
 
 // generate a message indicating who won in each round
