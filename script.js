@@ -14,6 +14,7 @@ function computerPlay() {
   } else {
     move = 'scissors';
   }
+
   // return move
   return move;
 }
@@ -45,8 +46,10 @@ function playRound(playerSelection, computerSelection) {
       roundResult = -1;
     }
   }
+
   // get message to indicate who won the round
   let roundMessage = getRoundResultMessage(playerSelection, computerSelection, roundResult);
+  console.log(roundMessage); // TEST
   // return message 
   return roundMessage;
 }
@@ -102,4 +105,14 @@ function getGameResultMessage(playerRoundWon, computerRoundWon) {
 }
 
 // play game
-game();
+// game();
+
+// let playerSelectionRock = document.querySelector('.player-selection .rock');
+// playerSelectionRock.addEventListener('click', (e) => console.log(e.target.textContent));
+
+const playerSelectionBtns = document.querySelectorAll('.selection-button');
+playerSelectionBtns.forEach((selectionBtn) => {
+  selectionBtn.addEventListener('click', (e) => {
+    playRound(e.target.innerText.toLowerCase(), computerPlay())
+  });
+});
