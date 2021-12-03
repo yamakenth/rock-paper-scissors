@@ -168,5 +168,3 @@ function displayPlayAgain() {
   playAgainDiv.appendChild(playAgainBtn);
   playAgainBtn.addEventListener('click', () => window.location.reload());
 }
-
-// 
