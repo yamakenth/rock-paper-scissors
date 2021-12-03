@@ -45,3 +45,13 @@ body {
   text-align: center;
   margin: 4px;
 }
+
+.game-status {
+  border: 2px solid black;
+  height: 40px;
+  width: 400px;
+  margin: 0 auto 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
