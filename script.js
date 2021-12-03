@@ -112,8 +112,11 @@ function addRunningTotalToPage() {
   document.querySelector('.round-number').innerText = roundNumber;
   document.querySelector('.player-score').innerText = playerScore;
   document.querySelector('.computer-score').innerText = computerScore;
-  // alert game winner if one playe reaches 5 points 
+  // display game winner if one playe reaches 5 points 
+  let gameResultDiv = document.querySelector('.game-result');
+  let gameResultMessage = document.createElement('p');
   if (playerScore === 5 || computerScore === 5) {
-    alert(`You ${(playerScore > computerScore) ? 'won' : 'lost'} the game!`);
+    gameResultMessage.innerText = `You ${(playerScore > computerScore) ? 'won' : 'lost'}!`;
+    gameResultDiv.appendChild(gameResultMessage)
   }
 }
