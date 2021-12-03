@@ -5,7 +5,7 @@ body {
 
 .header {
   width: 500px;
-  margin: 12px auto 38px;
+  margin: 12px auto 32px;
   text-align: center;
   color: #036603;
 }
@@ -67,7 +67,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(219, 6, 6);
+  color: #db0606;
 }
 
 .player-selection {
@@ -86,20 +86,19 @@ body {
 }
 
 .buttons .selection-button {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 100px;
   border-radius: 12px;
   font-size: 22px;
   font-weight: bold;
   background-color: #800080;
   color: #adff2f;
   border: 4px solid #c50606;
-  transition: all .07s;
 }
 
 .round-result {
   text-align: center;
-  margin: 24px;
+  margin-bottom: 20px;
 }
 
 .round-result h2 {
