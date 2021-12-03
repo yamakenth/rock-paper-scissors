@@ -117,6 +117,6 @@ function addRunningTotalToPage() {
   let gameResultMessage = document.createElement('p');
   if (playerScore === 5 || computerScore === 5) {
     gameResultMessage.innerText = `You ${(playerScore > computerScore) ? 'won' : 'lost'}!`;
-    gameResultDiv.appendChild(gameResultMessage)
+    gameResultDiv.appendChild(gameResultMessage);
   }
 }
