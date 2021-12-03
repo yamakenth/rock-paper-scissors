@@ -12,15 +12,13 @@ playerSelectionBtns.forEach((selectionBtn) => {
     let computerSelection = generateComputerSelection();
     let roundResult = playRound(playerSelection, computerSelection);
     // add result and moves of each round to gameResult array 
-    // .push returns new array length 
-    let roundNumber = gameResult.push([roundResult, playerSelection, computerSelection]); 
+    gameResult.push([roundResult, playerSelection, computerSelection]); 
     // get round result message
     let roundResultMessage = getRoundResultMessage(gameResult[gameResult.length - 1]);
     // add round result message to page 
     addRoundResultToPage(roundResultMessage);
-
-    console.log(roundResult, playerSelection, computerSelection, gameResult, roundNumber);
-    console.log(roundResultMessage);
+    // add running total to page 
+    addRunningTotalToPage();
   });
 });
 
@@ -101,51 +99,21 @@ function addRoundResultToPage(roundMessage) {
   roundResultDiv.appendChild(roundMessageP);
 }
 
-
-
-
-
-
-/*
-
-// play 5 rounds, log result of each round, keep tally of number of rounds won, display game winner 
+// add running total to page and return message if one player wins 
 // take in no parameters 
-// return game winner
-function game() {
-  // keep tally of player's wins and computer's wins 
-  let playerRoundWon = 0;
-  let computerRoundWon = 0;
-  // play game 
-  while (true) {  
-    let playerSelection = prompt('What\'s your move? Type "rock", "paper", or "scissors"').toLowerCase();
-    let computerSelection = computerPlay();
-    let roundResult = playRound(playerSelection, computerSelection);
-    if (roundResult.split('!')[0] === 'You won') {
-      playerRoundWon++;
-    } else if (roundResult.split('!')[0] === 'You lost') {
-      computerRoundWon++;
-    }
-    console.log(roundResult);
-  }
-  // log game winner 
-  let gameMessage = getGameResultMessage(playerRoundWon, computerRoundWon);
-  console.log(gameMessage);
-}
-
-// generate a message indicating who won the game 
-// take in number of rounds won by player, number of rounds won by computer
-// return message
-function getGameResultMessage(playerRoundWon, computerRoundWon) {
-  if (playerRoundWon === computerRoundWon) {
-    return 'IT WAS A DRAW!';
-  } else if (playerRoundWon > computerRoundWon) {
-    return `YOU WON! YOU WON ${playerRoundWon} GAMES OUT OF 5.`;
-  } else {
-    return `YOU LOST! YOU WON ${playerRoundWon} GAMES OUT OF 5.`;
+// return no results 
+function addRunningTotalToPage() {
+  // calculate running totals 
+  let roundNumber = gameResult.length;
+  let resultOnly = gameResult.map(x => x[0]);
+  let playerScore = resultOnly.filter(x => x > 0).length;
+  let computerScore = resultOnly.filter(x => x < 0).length;
+  // add running totals to page 
+  document.querySelector('.round-number').innerText = roundNumber;
+  document.querySelector('.player-score').innerText = playerScore;
+  document.querySelector('.computer-score').innerText = computerScore;
+  // alert game winner if one playe reaches 5 points 
+  if (playerScore === 5 || computerScore === 5) {
+    alert(`You ${(playerScore > computerScore) ? 'won' : 'lost'} the game!`);
   }
 }
-
-// play game
-// game();
-
-*/
