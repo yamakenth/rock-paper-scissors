@@ -156,11 +156,11 @@ function disableSelectionBtns() {
 // take in no parameters 
 // return no results 
 function displayPlayAgain() {
-  let playerSelectionDiv = document.querySelector('.player-selection');
+  let playAgainDiv = document.querySelector('.play-again');
   let playAgainBtn = document.createElement('button');
   playAgainBtn.type = 'button';
   playAgainBtn.className = 'play-again';
-  playAgainBtn.innerText = 'Play again';
-  playerSelectionDiv.appendChild(playAgainBtn);
+  playAgainBtn.innerText = 'Play Again!';
+  playAgainDiv.appendChild(playAgainBtn);
   playAgainBtn.addEventListener('click', () => window.location.reload());
 }
