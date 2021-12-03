@@ -117,6 +117,10 @@ function getRoundResultMessage(roundResult, playerSelection, computerSelection) 
 // take in round result message 
 // return no results 
 function displayRoundResultMessage(roundMessage) {
+  // display in game stat section 
+  let currentGameStat = document.querySelector('.game-status .current-status');
+  currentGameStat.innerText = roundMessage;
+  // display in round result section 
   const roundResultDiv = document.querySelector('.round-result');
   const roundMessageP = document.createElement('p');
   roundMessageP.innerText = roundMessage;
@@ -137,10 +141,8 @@ function displayRunningScore() {
 // take in no parameters 
 // return no results 
 function displayGameResultMessage() {
-  let gameResultDiv = document.querySelector('.game-result');
-  let gameResultMessage = document.createElement('p');
-  gameResultMessage.innerText = `You ${(playerScore > computerScore) ? 'won' : 'lost'}!`;
-  gameResultDiv.appendChild(gameResultMessage);
+  let currentGameStat = document.querySelector('.game-status .current-status');
+  currentGameStat.innerText = `You ${(playerScore > computerScore) ? 'won' : 'lost'}!`;
 }
 
 // disable player selection buttons 
