@@ -1,5 +1,5 @@
 // variables to keep track of game status 
-let roundNumber = 0;
+let roundNumber = 1;
 let playerScore = 0;
 let computerScore = 0;
 
