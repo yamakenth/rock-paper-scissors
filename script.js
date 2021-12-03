@@ -7,6 +7,8 @@ let computerScore = 0;
 const playerSelectionBtns = document.querySelectorAll('.selection-button');
 playerSelectionBtns.forEach((selectionBtn) => {
   selectionBtn.addEventListener('click', (e) => playGame(e));
+  selectionBtn.addEventListener('mouseenter', (e) => e.target.classList.add('selecting'));
+  selectionBtn.addEventListener('mouseleave', (e) => e.target.classList.remove('selecting'));
 });
 
 // play one round of game 
@@ -166,3 +168,5 @@ function displayPlayAgain() {
   playAgainDiv.appendChild(playAgainBtn);
   playAgainBtn.addEventListener('click', () => window.location.reload());
 }
+
+// 
