@@ -124,3 +124,6 @@ playerSelectionBtns.forEach((selectionBtn) => {
     playRound(e.target.innerText.toLowerCase(), computerPlay())
   });
 });
+
+// MAYBE CREATE ROUND RESULT ARRAY OR STH AND KEEP TRACK AND PULL EVERYTHING FROM THERE 
+// HAVE playRound updateArray & have on click add child from last element in array
