@@ -75,3 +75,19 @@ body {
   width: 150px;
   height: 150px;
 }
+
+.round-result {
+  text-align: center;
+}
+
+.round-result h2 {
+  margin-bottom: 4px;
+}
+
+.round-result .history {
+  border: 1px solid black;
+  width: 400px;
+  height: 200px;
+  overflow-y: scroll;
+  margin: 0 auto;
+}

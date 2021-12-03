@@ -121,7 +121,7 @@ function displayRoundResultMessage(roundMessage) {
   let currentGameStat = document.querySelector('.game-status .current-status');
   currentGameStat.innerText = roundMessage;
   // display in round result section 
-  const roundResultDiv = document.querySelector('.round-result');
+  const roundResultDiv = document.querySelector('.round-result .history');
   const roundMessageP = document.createElement('p');
   roundMessageP.innerText = roundMessage;
   roundResultDiv.appendChild(roundMessageP);
