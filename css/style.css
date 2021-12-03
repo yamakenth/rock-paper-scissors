@@ -4,8 +4,12 @@ body {
 
 .header {
   width: 500px;
-  margin: 12px auto 24px;
+  margin: 12px auto 38px;
   text-align: center;
+}
+
+.header h1 {
+  font-size: 38px;
 }
 
 .running-score {
@@ -33,7 +37,7 @@ body {
   height: auto;
   flex-direction: column;
   align-items: center;
-  row-gap: 10px;
+  row-gap: 4px;
 }
 
 .player-score,
