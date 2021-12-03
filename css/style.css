@@ -78,6 +78,7 @@ body {
 
 .round-result {
   text-align: center;
+  margin: 24px;
 }
 
 .round-result h2 {
@@ -90,4 +91,15 @@ body {
   height: 200px;
   overflow-y: scroll;
   margin: 0 auto;
+}
+
+div.play-again {
+  width: 200px;
+  margin: 0 auto 24px;
+  display: flex;
+  justify-content: center;
+}
+
+button.play-again {
+  height: 30px;
 }
