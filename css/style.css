@@ -50,8 +50,28 @@ body {
   /* border: 2px solid black; */
   height: 40px;
   width: 400px;
-  margin: 0 auto 24px;
+  margin: 0 auto 12px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.player-selection {
+  margin-bottom: 24px;
+}
+
+.player-selection h2 {
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 12px;
+}
+
+.buttons .selection-button {
+  width: 150px;
+  height: 150px;
 }
