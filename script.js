@@ -1,7 +1,33 @@
+// array to track round results and moves
+const gameResult = [];
+
+// eventListener on player selection buttons 
+// 1. play one round and add result to gameResult array
+// 2. display round result on page 
+const playerSelectionBtns = document.querySelectorAll('.selection-button');
+playerSelectionBtns.forEach((selectionBtn) => {
+  selectionBtn.addEventListener('click', (e) => {
+    // play one round 
+    let playerSelection = e.target.innerText.toLowerCase();
+    let computerSelection = generateComputerSelection();
+    let roundResult = playRound(playerSelection, computerSelection);
+    // add result and moves of each round to gameResult array 
+    // .push returns new array length 
+    let roundNumber = gameResult.push([roundResult, playerSelection, computerSelection]); 
+    // get round result message
+    let roundResultMessage = getRoundResultMessage(gameResult[gameResult.length - 1]);
+    // add round result message to page 
+    addRoundResultToPage(roundResultMessage);
+
+    console.log(roundResult, playerSelection, computerSelection, gameResult, roundNumber);
+    console.log(roundResultMessage);
+  });
+});
+
 // randomly generate computer's move 
 // take no parameters 
 // return 'rock', 'paper', or 'scissors'
-function computerPlay() {
+function generateComputerSelection() {
   // declare move 
   let move = '';
   // generate a random number [0, 3)
@@ -15,13 +41,12 @@ function computerPlay() {
     move = 'scissors';
   }
 
-  // return move
   return move;
 }
 
-// play one round of Rock Paper Scissors then display result on page
+// play one round of Rock Paper Scissors
 // take in a player's move, a computer's move 
-// return no result 
+// Return int representation of result 
 function playRound(playerSelection, computerSelection) {
   // determine winner {-1: player lose, 0: draw, 1: player win}
   let roundResult = NaN;
@@ -47,25 +72,16 @@ function playRound(playerSelection, computerSelection) {
     }
   }
 
-  // add message to indicate who won the round
-  const roundMessage = getRoundResultMessage(playerSelection, computerSelection, roundResult);
-  addRoundResultToDiv(roundMessage);
-}
-
-// add child element to "Round Result" section on page
-// take in round result message 
-// return no results 
-function addRoundResultToDiv(roundMessage) {
-  const roundResultDiv = document.querySelector('.round-result');
-  const roundMessageP = document.createElement('p');
-  roundMessageP.innerText = roundMessage;
-  roundResultDiv.appendChild(roundMessageP);
+  return roundResult;
 }
 
 // generate a message indicating who won in each round
-// take in a player's selection, a computer's selection, an integer representaion of who won 
+// take in array of roundResult, playerSelection, computerSelection
 // return message
-function getRoundResultMessage(playerSelection, computerSelection, roundResult) {
+function getRoundResultMessage(roundDetail) {
+  let roundResult = roundDetail[0];
+  let playerSelection = roundDetail[1];
+  let computerSelection = roundDetail[2];
   if (roundResult === 0) {
     return `It was a draw! You played ${playerSelection}.`;
   } else if (roundResult === 1) {
@@ -74,6 +90,23 @@ function getRoundResultMessage(playerSelection, computerSelection, roundResult) 
     return `You lost! ${computerSelection} beats ${playerSelection}`;
   }
 }
+
+// add child element to "Round Result" section on page
+// take in round result message 
+// return no results 
+function addRoundResultToPage(roundMessage) {
+  const roundResultDiv = document.querySelector('.round-result');
+  const roundMessageP = document.createElement('p');
+  roundMessageP.innerText = roundMessage;
+  roundResultDiv.appendChild(roundMessageP);
+}
+
+
+
+
+
+
+/*
 
 // play 5 rounds, log result of each round, keep tally of number of rounds won, display game winner 
 // take in no parameters 
@@ -115,15 +148,4 @@ function getGameResultMessage(playerRoundWon, computerRoundWon) {
 // play game
 // game();
 
-// let playerSelectionRock = document.querySelector('.player-selection .rock');
-// playerSelectionRock.addEventListener('click', (e) => console.log(e.target.textContent));
-
-const playerSelectionBtns = document.querySelectorAll('.selection-button');
-playerSelectionBtns.forEach((selectionBtn) => {
-  selectionBtn.addEventListener('click', (e) => {
-    playRound(e.target.innerText.toLowerCase(), computerPlay())
-  });
-});
-
-// MAYBE CREATE ROUND RESULT ARRAY OR STH AND KEEP TRACK AND PULL EVERYTHING FROM THERE 
-// HAVE playRound updateArray & have on click add child from last element in array
+*/
